@@ -19,7 +19,7 @@ public class Muveletek extends javax.swing.JFrame {
     public Muveletek() {
         initComponents();
     }
-
+    String mentettFajl;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -299,28 +299,37 @@ public class Muveletek extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMegoldasActionPerformed
 
     private void mnuFajlMentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuFajlMentActionPerformed
-        //fájl nevének és helyének kiválasztása
-
-        //fájl választó
-        JFileChooser fc = new JFileChooser();
-        fc.setDialogTitle("Fájl mentése"); //beállítja a fájl kiválasztó ablak title
-        fc.setCurrentDirectory(new File("."));//az alapértelmezett könyvtár kiválasztása
-        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-
-        int valasztottGombErteke = fc.showSaveDialog(this);
-        if (valasztottGombErteke == JFileChooser.APPROVE_OPTION) {
-            File f = fc.getSelectedFile();
-            if (f.isDirectory()) {
-                lblEredmeny.setText("<html>Elérés: " + f.getPath() + "<br>Könyvtár:" + f.getName() + "</html>");
-                try {
-                    //a tényleges kiírás(fájlba írás)
-                    Files.write(Paths.get(f.getPath(), "stat.txt"), "Statisztika:".getBytes());
-                } //a kiirás vége
-                catch (IOException ex) {
-                    Logger.getLogger(Muveletek.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-
+//        //fájl nevének és helyének kiválasztása
+//
+//        //fájl választó
+//        JFileChooser fc = new JFileChooser();
+//        fc.setDialogTitle("Fájl mentése"); //beállítja a fájl kiválasztó ablak title
+//        fc.setCurrentDirectory(new File("."));//az alapértelmezett könyvtár kiválasztása
+//        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+//
+//        int valasztottGombErteke = fc.showSaveDialog(this);
+//        if (valasztottGombErteke == JFileChooser.APPROVE_OPTION) {
+//            File f = fc.getSelectedFile();
+//            if (f.isDirectory()) {
+//                lblEredmeny.setText("<html>Elérés: " + f.getPath() + "<br>Könyvtár:" + f.getName() + "</html>");
+//                try {
+//                    //a tényleges kiírás(fájlba írás)
+//                    Files.write(Paths.get(f.getPath(), "stat.txt"), "Statisztika:".getBytes());
+//                } //a kiirás vége
+//                catch (IOException ex) {
+//                    Logger.getLogger(Muveletek.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+        if(mentettFajl==null){
+            mnuFajlMentesMaskentActionPerformed(evt);
+        }else{
+        try {
+            Files.write(Paths.get(mentettFajl), "Statisztika:".getBytes());
+//
+//        }
+        } catch (IOException ex) {
+            Logger.getLogger(Muveletek.class.getName()).log(Level.SEVERE, null, ex);
+        }
         }
     }//GEN-LAST:event_mnuFajlMentActionPerformed
     /*Tesztesetek
@@ -336,6 +345,11 @@ public class Muveletek extends javax.swing.JFrame {
     -kiterjesztéssel választom a meglévő fájlt,akkor megint mögé rakja a kiterjesztést(kezeltük)
     -létezik a fájl,akkor azonnal felülírja
      */
+    
+    /*Mentés és mentés másként közötti küönbség
+    
+    */
+//          void=eljárás
     private void mnuFajlMentesMaskentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuFajlMentesMaskentActionPerformed
          JFileChooser fc = new JFileChooser(new File("."));
         fc.setDialogTitle("Mentés másként..");
@@ -368,9 +382,9 @@ public class Muveletek extends javax.swing.JFrame {
             if (!fn.endsWith("." + kit[0])) {
                    fn+="." + kit[0];
             }
-
             /*kiterjesztés vizsgálata VÉGE*/
             boolean mentes=true;
+            mentettFajl=fn;
             /*létezik-e a fájl*/
             Path path=Paths.get(fn);
             if(Files.exists(path)){
@@ -383,7 +397,7 @@ public class Muveletek extends javax.swing.JFrame {
             /*létezik-e a fájl VÉGE*/
             
 
-            lblEredmeny.setText("<html>Elérés: " + f.getPath() + "<br>Fájl neve:" + f.getName() + "</html>");
+            lblEredmeny.setText("<html>Elérés: " + f.getPath() + "<br>Fájl neve:" + f.getName() +"."+kit[0] + "</html>");
             //kivételt dob(extension)
             try {
                 //elérési út(getPath)

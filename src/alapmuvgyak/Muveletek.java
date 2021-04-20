@@ -406,8 +406,9 @@ public class Muveletek extends javax.swing.JFrame {
             //kivételt dob(extension)
             try {
                 //elérési út(getPath)
+                //tényleges kiirás
                 if(mentes){
-                Files.write(path, "Statisztika:".getBytes());
+                Files.write(path, tartalomOsszeallitasa().getBytes());
             }
             } catch (IOException ex) {
                 Logger.getLogger(Muveletek.class.getName()).log(Level.SEVERE, null, ex);
@@ -518,4 +519,10 @@ public class Muveletek extends javax.swing.JFrame {
     private javax.swing.JPanel pnlGyakorlas;
     private javax.swing.JTextField txtEredmeny;
     // End of variables declaration//GEN-END:variables
+
+    private String tartalomOsszeallitasa() {
+       String statisztika="Alapműveletek statisztika:";
+        return "Statisztika";
+    
+}
 }

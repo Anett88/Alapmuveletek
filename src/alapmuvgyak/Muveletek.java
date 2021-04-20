@@ -210,6 +210,11 @@ public class Muveletek extends javax.swing.JFrame {
         mnuFajl.setText("Fájl");
 
         mnuFajlMegnyit.setText("Megnyit");
+        mnuFajlMegnyit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuFajlMegnyitActionPerformed(evt);
+            }
+        });
         mnuFajl.add(mnuFajlMegnyit);
 
         mnuFajlMentesMaskent.setText("Mentés másként...");
@@ -411,6 +416,36 @@ public class Muveletek extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "A mentés megszakítva","Mentés sikertelen",JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_mnuFajlMentesMaskentActionPerformed
+
+    private void mnuFajlMegnyitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuFajlMegnyitActionPerformed
+      JFileChooser fc = new JFileChooser(new File("."));
+        fc.setDialogTitle("Fájl mennyitás");
+        //fájl tipusokat nem mutatja(false értéknél)
+        fc.setAcceptAllFileFilterUsed(false);
+
+        //fájlok szövege(Files of type)                                  kiterjeszése milyen
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Png és Gif fájlok", "png", "gif");
+        fc.addChoosableFileFilter(filter);
+
+        FileNameExtensionFilter txtfilter = new FileNameExtensionFilter("csak szöveg", "(*.txt)", "txt");
+        fc.addChoosableFileFilter(txtfilter);
+
+        FileNameExtensionFilter szafilter = new FileNameExtensionFilter("saját", "(*.sza)", "sza");
+        fc.addChoosableFileFilter(szafilter);
+
+        //beállítja alapértelmezettként egy fájlt
+        fc.setFileFilter(txtfilter);
+        //ha elakarja menteni
+        int valasztottGombErteke = fc.showOpenDialog(this);
+        if (valasztottGombErteke == JFileChooser.APPROVE_OPTION) {
+            File f = fc.getSelectedFile();
+            String fn = f.getPath();//megnézzük mi a választott fájl
+          lblEredmeny.setText("<html>Elérés: " + f.getPath() + "<br>Fájl neve:" + f.getName() + "</html>");
+           
+        }  else{
+          JOptionPane.showMessageDialog(this, "A megnyitás megszakítva","Megnyitás sikertelen",JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_mnuFajlMegnyitActionPerformed
 
     /**
      * @param args the command line arguments

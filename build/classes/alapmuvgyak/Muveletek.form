@@ -64,12 +64,18 @@
                 <Property name="selected" type="boolean" value="true"/>
                 <Property name="text" type="java.lang.String" value="Szorz&#xe1;s"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuMuveletSzorzasActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JRadioButtonMenuItem" name="mnuMuveletOsztas">
               <Properties>
                 <Property name="selected" type="boolean" value="true"/>
                 <Property name="text" type="java.lang.String" value="Oszt&#xe1;s"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuMuveletOsztasActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -249,7 +255,7 @@
                               <Component id="lblSzorzasProba" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="lblOsszeadProba" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="lblOsztasProba" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="lbllblOsszProba" alignment="1" min="-2" pref="156" max="-2" attributes="0"/>
+                              <Component id="lblOsszProba" alignment="1" min="-2" pref="156" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -263,7 +269,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblOsszKerdes" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lbllblOsszProba" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblOsszProba" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -300,7 +306,7 @@
             <Property name="text" type="java.lang.String" value="&#xd6;ssz k&#xe9;rd&#xe9;sek sz&#xe1;ma: 1"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lbllblOsszProba">
+        <Component class="javax.swing.JLabel" name="lblOsszProba">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="&#xd6;ssz Prob&#xe1;lkoz&#xe1;sok sz&#xe1;ma: 1"/>

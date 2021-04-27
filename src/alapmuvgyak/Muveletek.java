@@ -475,12 +475,12 @@ public class Muveletek extends javax.swing.JFrame {
             try {
 //                byte[]bajtTomb=Files.readAllBytes(path);
 //                byte egyBajt=bajtTomb[0];
-//                int temp=67;
+                
                 List<String> stringLista=Files.readAllLines(path);
                 String egySor=stringLista.get(1);
                 String[] adatok=egySor.split(":");
                 
-                
+                int temp=67;
             } catch (IOException ex) {
                 Logger.getLogger(Muveletek.class.getName()).log(Level.SEVERE, null, ex);
             }
